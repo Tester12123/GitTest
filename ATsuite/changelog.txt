@@ -1,0 +1,118 @@
+Version 1.0.5
+Bug Fixes:
+- fixed file not found exception - http://www.atsuite.com/forum/viewtopic.php?f=5&t=19454
+- fixed ImageIO error - http://www.atsuite.com/forum/viewtopic.php?f=5&t=19455
+
+New features:
+- new instruction simulating random delay in user reaction:
+   randomwait <min> <max> - acts as a wait instruction with delay value randomly selected from range defined by passed parameters. Delay time is in milliseconds as in wait instruction.
+- Added support for Microsoft Edge browser. To perform test in Edge use "edge" option in config driver instruction.
+   Caution!! This is initial release of Edge driver and as Microsoft states not all functionalities are implemented yet.
+   To use Edge driver user must install and run Microsoft WebDriver avaliable at https://www.microsoft.com/en-us/download/details.aspx?id=48212.
+
+Known issues:
+- Opera browser is no longer supported.
+- When experiencing problems with Safari browser tests refer to page
+https://code.google.com/p/selenium/issues/detail?id=7933&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
+(referenced jar file can be found in lib directory)
+- When experiencing problems with IE browser tests refer to page
+https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+(no IEDriverServer executable download is required since it is already part of this distribution)
+
+
+==============================
+Version 1.0.4
+
+Bug Fixes:
+- positive verifications for containing or equality checks now create entries in HTML verification log. - http://www.atsuite.com/forum/viewtopic.php?f=5&t=19441
+- xpath axes no longer mistaken for variables - http://www.atsuite.com/forum/viewtopic.php?f=4&t=19445
+- it is possible to pass filename to dumpvars instruction in variable - http://www.atsuite.com/forum/viewtopic.php?f=5&t=19449
+- it is possible to use a variable as a second argument of find instruction - http://www.atsuite.com/forum/viewtopic.php?f=5&t=19448
+
+New Features:
+- New instructions for simulating mouse hover operation:
+  hover - simulate hover operation over last element found with find instruction
+  hoverx "<xpath>" - simulate hover operation over element indicated by xpath argument
+  hovers "<image_file>" - simulate mouse hover over element in the picture passed as argument (OCR technique)
+- New instruction for reading element attributes values - http://www.atsuite.com/forum/viewtopic.php?f=4&t=19447
+  read <variable_scope> <variable_name> from "xpath_to_element" attribute "attribute_name"
+  example: read local test from ".//*[@id='hplogo']" attribute "style" - this will read value from style attribute of the logo on google.com page and store its value in local variable named test
+- New instructions for removing recordings / screenshots created during test run. - http://www.atsuite.com/forum/viewtopic.php?f=4&t=19440
+  droprecordingsonsuccess - when the test ends with success all recordings made during that test run will be deleted on exit. May apear anyway in the script.
+  dropscreenshotsonsuccess - when the test ends with success all screenshots made during that test run will be deleted on exit. May apear anyway in the script.
+- Interpreter creates a screenshot in case of an exception. In multiple display environment every display gets its own screenshot saparately.
+- Selenium libraries updated to version 2.46.0
+
+Known issues:
+- Opera browser is no longer supported.
+- When experiencing problems with Safari browser tests refer to page
+https://code.google.com/p/selenium/issues/detail?id=7933&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
+(referenced jar file can be found in lib directory)
+- When experiencing problems with IE browser tests refer to page
+https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+(no IEDriverServer executable download is required since it is already part of this distribution)
+
+
+==============================
+Version 1.0.3
+
+Bug fixes:
+- Ocr instructions may not found objects on screen when used on multiple monitor environment. config ocrDisplay = "0"
+- log files are only created when logging of given type occurs
+- log files are now prefixed with the executed script file name (without extension)
+
+New features:
+- New instruction for selecting display for ocr instructions
+ config ocrDisplay = "screen_id"
+ screen_id value of 0 indicates main monitor, first external value 1, etc...
+ To be 100% sure test which value is proper for your setup.
+
+
+Known issues:
+- Opera browser is no longer supported.
+- When experiencing problems with Safari browser tests refer to page
+https://code.google.com/p/selenium/issues/detail?id=7933&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
+(referenced jar file can be found in lib directory)
+- When experiencing problems with IE browser tests refer to page
+https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+(no IEDriverServer executable download is required since it is already part of this distribution)
+
+
+==============================
+Version 1.0.2
+
+Bug fixes:
+- OCR functionality restored.
+- Using break and continue instruction outside of the loop no longer causes uncaught exception to be thrown.
+
+New features:
+- It is now clearly indicated after test finish if it was successful or did it fail.
+
+Known issues:
+- This version does not work with Firefox version 43.
+- When experiencing problems with Safari browser tests refer to page
+https://code.google.com/p/selenium/issues/detail?id=7933&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
+(referenced jar file can be found in lib directory)
+- When experiencing problems with IE browser tests refer to page
+https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration
+(no IEDriverServer executable download is required since it is already part of this distribution)
+
+
+==============================
+Version 1.0.1
+
+Bug fixes:
+- After test termination system exit code is returned indicating the result of the test. 0 - success, 1- failure
+- When encountering "exit" instruction inside a loop whole test is terminated instead the loop alone.
+- When test is terminated wuth "exit" instruction recording of video sequence is terminated propery.
+- Returning results from external HeanShell script no longer cause Exceptions.
+
+ New features:
+ - "continue" instruction for use in loops to skip to the next iteration.
+ - "break" instruction for use in loops to terminate loop execution.
+
+
+==============================
+Version 1.0.0
+
+Initial release.
